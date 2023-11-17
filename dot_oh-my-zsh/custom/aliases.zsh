@@ -1,7 +1,7 @@
 # Aliases
 
 # alias dir='ls -lasF'
-alias dir='colorls -la'
+command -v colorls > /dev/null 2>&1 && { alias dir='colorls -la'; }
 alias k="kubectl"
 alias h="helm"
 alias tf="terraform"

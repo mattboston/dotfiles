@@ -25,7 +25,7 @@ else
   exit 1
 fi
 
-source .env
+source .env_${USE_CASE}
 bin_dir="$HOME/bin"
 
 # Set git commit settings. You'll need these to update this repo.

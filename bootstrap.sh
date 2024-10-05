@@ -39,35 +39,11 @@ CODE_DIR="$HOME/Development"
 echo "Creating directories: ${BIN_DIR} ${CODE_DIR}"
 mkdir -p ${BIN_DIR} ${CODE_DIR}
 
-# ###########################################################
-# install homebrew (CLI Packages)
-# ###########################################################
-echo "checking homebrew..."
-brew_bin=$(which brew) 2>&1 > /dev/null
-if [[ $? != 0 ]]; then
-  echo "installing homebrew"
+if [ ! "$(command -v brew)" ]; then
+  echo "Installing Homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  if [[ $? != 0 ]]; then
-    echo "unable to install homebrew, script $0 abort!"
-    exit 2
-  fi
-  (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/$(whoami)/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  brew analytics off
-else
-  ok
-  echo "Homebrew"
-  read -r -p "run brew update && upgrade? [y|N] " response
-  if [[ $response =~ (y|yes|Y) ]]; then
-    echo "updating homebrew..."
-    brew update
-    echo "homebrew updated"
-    echo "upgrading brew packages..."
-    brew upgrade
-    echo "brews upgraded"
-  else
-    echo "skipped brew package upgrades."
-  fi
+  # curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -s
+  # brew install mas
 fi
 
 # if [[ "$OSTYPE" =~ ^darwin && ! "$(xcode-select -p 1>/dev/null;echo $?)" ]]; then

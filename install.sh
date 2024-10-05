@@ -2,36 +2,18 @@
 
 set -e # exit on error
 
-USE_CASE=$1
-echo "Using use case: $USE_CASE"
+USE_ENV=$1
 
-if [ -z "$USE_CASE" ]; then
-  USE_CASE="home"
-  echo "Using default use case: $USE_CASE"
+if [ -z "$USE_ENV" ]; then
+  USE_ENV="home"
+  echo "Using default ENV case: $USE_ENV"
 else
-  if [ "$USE_CASE" != "home" ] && [ "$USE_CASE" != "work" ]; then
-    echo "Invalid use case: $USE_CASE"
+  if [ "$USE_ENV" != "home" ] && [ "$USE_ENV" != "work" ]; then
+    echo "Invalid ENV case: $USE_ENV"
     exit 1
   fi
-  USE_CASE=$1
-  echo "Using custom use case: $USE_CASE"
+  echo "Using custom ENV case: $USE_ENV"
 fi
-
-if [ "$(command -v curl)" ]; then
-  echo "Using curl to download .env_${USE_CASE} file"
-  curl -fsSL https://raw.githubusercontent.com/mattboston/dotfiles/refs/heads/main/.env_${USE_CASE} -o .env_${USE_CASE}
-  # curl -fsSL https://raw.githubusercontent.com/mattboston/dotfiles/refs/heads/main/Brewfile-${USE_CASE} -o Brewfile-${USE_CASE}
-else
-  echo "You must have curl installed." >&2
-  exit 1
-fi
-
-source .env_${USE_CASE}
-bin_dir="$HOME/bin"
-
-# Set git commit settings. You'll need these to update this repo.
-git config --global user.email "${GITHUB_EMAIL}"
-git config --global user.name "${GITHUB_NAME}"
 
 # Check that we have curl or wget
 # if [[ ! "$(command -v curl)" || ! "$(command -v wget)" ]]; then
@@ -42,29 +24,40 @@ if [[ ! "$(command -v curl)" ]]; then
   exit 1
 fi
 
+if [ "$(command -v curl)" ]; then
+  echo "Using curl to download .env_${USE_ENV} file"
+  curl -fsSL https://raw.githubusercontent.com/mattboston/dotfiles/refs/heads/main/.env_${USE_ENV} -o .env_${USE_ENV}
+  # curl -fsSL https://raw.githubusercontent.com/mattboston/dotfiles/refs/heads/main/Brewfile-${USE_ENV} -o Brewfile-${USE_ENV}
+else
+  echo "You must have curl installed." >&2
+  exit 1
+fi
+
+source .env_${USE_ENV}
+BIN_DIR="$HOME/bin"
+CODE_DIR="$HOME/Development"
+echo "Creating directories: ${BIN_DIR} ${CODE_DIR}"
+mkdir -p ${BIN_DIR} ${CODE_DIR}
+
 # if [[ "$OSTYPE" =~ ^darwin && ! "$(xcode-select -p 1>/dev/null;echo $?)" ]]; then
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     echo "MacOS"
+    echo "Installing xcode"
     sudo xcode-select --install
 fi
 
+# Set git commit settings. You'll need these to update this repo.
+echo "Setting git config"
+git config --global user.email "${GITHUB_EMAIL}"
+git config --global user.name "${GITHUB_NAME}"
+
 if [ ! "$(command -v brew)" ]; then
-  if [ "$(command -v curl)" ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  else
-    echo "To install brew, you must have curl installed." >&2
-    exit 1
-  fi
 fi
 
 if [ ! "$(command -v chezmoi)" ]; then
-  chezmoi="$bin_dir/chezmoi"
-  if [ "$(command -v curl)" ]; then
-    sh -c "$(curl -fsSL https://git.io/chezmoi)" -- -b "$bin_dir"
-  else
-    echo "To install chezmoi, you must have curl installed." >&2
-    exit 1
-  fi
+  chezmoi="$BIN_DIR/chezmoi"
+    sh -c "$(curl -fsSL https://git.io/chezmoi)" -- -b "$BIN_DIR"
 else
   chezmoi=chezmoi
 fi
@@ -75,7 +68,7 @@ fi
 # exec "$chezmoi" init --apply "--source=$script_dir"
 chezmoi init --apply ${GITHUB_USERNAME}
 
-brew bundle install --file=~/Brewfile-${USE_CASE}
+brew bundle install --file=~/Brewfile-${USE_ENV}
 
 # Stop here until I figure out what I want to do on other OSes
 exit 0
@@ -87,7 +80,7 @@ fi
 
 if [[ "${OSTYPE}" =~ ^linux ]]; then
     echo "Linux"
-    bin_dir='~/bin'
+    BIN_DIR='~/bin'
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     if [ -f /etc/os-release ]; then
         # freedesktop.org and systemd

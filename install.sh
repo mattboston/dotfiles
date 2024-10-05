@@ -17,7 +17,7 @@ else
 fi
 
 if [ "$(command -v curl)" ]; then
-  echo "Using curl"
+  echo "Using curl to download .env_${USE_CASE} file"
   curl -fsSL https://raw.githubusercontent.com/mattboston/dotfiles/refs/heads/main/.env_${USE_CASE} -o .env_${USE_CASE}
   # curl -fsSL https://raw.githubusercontent.com/mattboston/dotfiles/refs/heads/main/Brewfile-${USE_CASE} -o Brewfile-${USE_CASE}
 else

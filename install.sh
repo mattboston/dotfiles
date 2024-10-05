@@ -43,7 +43,8 @@ mkdir -p ${BIN_DIR} ${CODE_DIR}
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     echo "MacOS"
     echo "Installing xcode"
-    sudo xcode-select --install
+    # sudo xcode-select --install
+    xcode-select --install
 fi
 
 # Set git commit settings. You'll need these to update this repo.

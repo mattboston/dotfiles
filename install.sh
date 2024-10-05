@@ -44,7 +44,7 @@ fi
 # if [[ "$OSTYPE" =~ ^darwin && ! "$(xcode-select -p 1>/dev/null;echo $?)" ]]; then
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     echo "MacOS"
-    xcode-select --install
+    sudo xcode-select --install
 fi
 
 if [ ! "$(command -v brew)" ]; then

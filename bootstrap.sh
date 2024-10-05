@@ -25,9 +25,9 @@ if [[ ! "$(command -v curl)" ]]; then
 fi
 
 if [ "$(command -v curl)" ]; then
-  echo "Using curl to download .env_${USE_ENV} file"
+  echo "Using curl to download .env_${USE_ENV} and Brewfile-${USE_ENV} file"
   curl -fsSL https://raw.githubusercontent.com/mattboston/dotfiles/refs/heads/main/.env_${USE_ENV} -o .env_${USE_ENV}
-  # curl -fsSL https://raw.githubusercontent.com/mattboston/dotfiles/refs/heads/main/Brewfile-${USE_ENV} -o Brewfile-${USE_ENV}
+  curl -fsSL https://raw.githubusercontent.com/mattboston/dotfiles/refs/heads/main/Brewfile-${USE_ENV} -o Brewfile-${USE_ENV}
 else
   echo "You must have curl installed." >&2
   exit 1

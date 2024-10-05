@@ -46,6 +46,9 @@ if [ ! "$(command -v brew)" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   # curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -s
   # brew install mas
+  echo >> ~/.zprofile
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # if [[ "$OSTYPE" =~ ^darwin && ! "$(xcode-select -p 1>/dev/null;echo $?)" ]]; then
@@ -66,7 +69,7 @@ if [ ! "$(command -v chezmoi)" ]; then
   chezmoi="$BIN_DIR/chezmoi"
     sh -c "$(curl -fsSL https://git.io/chezmoi)" -- -b "$BIN_DIR"
 else
-  chezmoi=chezmoi
+  chezmoi=~/bin/chezmoi
 fi
 
 # POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188

@@ -1,0 +1,9 @@
+emulate sh
+source ~/.profile
+emulate zsh
+
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Created by `pipx` on 2024-08-14 14:03:23
+export PATH="$PATH:/Users/matt/.local/bin"

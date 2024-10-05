@@ -39,22 +39,25 @@ CODE_DIR="$HOME/Development"
 echo "Creating directories: ${BIN_DIR} ${CODE_DIR}"
 mkdir -p ${BIN_DIR} ${CODE_DIR}
 
-# if [[ "$OSTYPE" =~ ^darwin && ! "$(xcode-select -p 1>/dev/null;echo $?)" ]]; then
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-    echo "MacOS"
-    echo "Installing xcode"
-    # sudo xcode-select --install
-    xcode-select --install
+if [ ! "$(command -v brew)" ]; then
+  echo "Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # brew install mas
 fi
+
+# if [[ "$OSTYPE" =~ ^darwin && ! "$(xcode-select -p 1>/dev/null;echo $?)" ]]; then
+# # if [[ "$OSTYPE" =~ ^darwin ]]; then
+#   if [ ! "$(command -v xcode-select)" ]; then
+#     # echo "MacOS"
+#     echo "Installing xcode"
+#     # sudo xcode-select --install
+#     xcode-select --install
+# fi
 
 # Set git commit settings. You'll need these to update this repo.
 echo "Setting git config"
 git config --global user.email "${GITHUB_EMAIL}"
 git config --global user.name "${GITHUB_NAME}"
-
-if [ ! "$(command -v brew)" ]; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
 
 if [ ! "$(command -v chezmoi)" ]; then
   chezmoi="$BIN_DIR/chezmoi"

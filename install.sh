@@ -41,10 +41,10 @@ if [[ ! "$(command -v curl)" ]]; then
   exit 1
 fi
 
-if [[ "$OSTYPE" =~ ^darwin && ! "$(xcode-select -p 1>/dev/null;echo $?)" ]]; then
-    echo "MacOS"
-    xcode-select --install
-fi
+# if [[ "$OSTYPE" =~ ^darwin && ! "$(xcode-select -p 1>/dev/null;echo $?)" ]]; then
+#     echo "MacOS"
+#     xcode-select --install
+# fi
 
 if [ ! "$(command -v brew)" ]; then
   if [ "$(command -v curl)" ]; then

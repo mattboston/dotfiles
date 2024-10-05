@@ -2,6 +2,8 @@
 
 set -e # exit on error
 
+sudo echo
+
 USE_ENV=$1
 
 if [ -z "$USE_ENV" ]; then

@@ -3,6 +3,7 @@
 set -e # exit on error
 
 USE_CASE=$1
+echo "Using use case: $USE_CASE"
 
 if [ -z "$USE_CASE" ]; then
   USE_CASE="home"

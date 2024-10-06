@@ -83,7 +83,7 @@ chezmoi init --apply ${GITHUB_USERNAME}
 
 brew bundle install --file=~/Brewfile-${USE_ENV}
 
-./defaults.sh
+~/.local/share/chezmoi/defaults.sh
 
 # Stop here until I figure out what I want to do on other OSes
 exit 0

@@ -58,6 +58,7 @@ brew "zsh"
 brew "zsh-history-substring-search"
 cask "1password", args: { appdir: "/Applications" }
 cask "1password-cli"
+cask "arc"
 cask "brave-browser", args: { appdir: "/Applications" }
 cask "bruno"
 cask "cursor"

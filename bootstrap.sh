@@ -51,6 +51,11 @@ if [ ! "$(command -v brew)" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+if [ ! "$(command -v omx)" ]; then
+  echo "Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
 # if [[ "$OSTYPE" =~ ^darwin && ! "$(xcode-select -p 1>/dev/null;echo $?)" ]]; then
 # # if [[ "$OSTYPE" =~ ^darwin ]]; then
 #   if [ ! "$(command -v xcode-select)" ]; then

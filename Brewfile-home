@@ -75,6 +75,7 @@ brew "supabase/tap/supabase"
 cask "1password", args: { appdir: "/Applications" }
 cask "1password-cli"
 cask "angry-ip-scanner"
+cask "arc"
 cask "balenaetcher", args: { appdir: "/Applications" }
 cask "blender", args: { appdir: "/Applications" }
 cask "brave-browser", args: { appdir: "/Applications" }

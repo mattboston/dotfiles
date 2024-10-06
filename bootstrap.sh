@@ -66,11 +66,11 @@ git config --global user.email "${GITHUB_EMAIL}"
 git config --global user.name "${GITHUB_NAME}"
 
 if [ ! "$(command -v chezmoi)" ]; then
-  chezmoi="$BIN_DIR/chezmoi"
-    sh -c "$(curl -fsSL https://git.io/chezmoi)" -- -b "$BIN_DIR"
-else
-  chezmoi=~/bin/chezmoi
+  # chezmoi="$BIN_DIR/chezmoi"
+    # sh -c "$(curl -fsSL https://git.io/chezmoi)" -- -b "$BIN_DIR"
+  brew install chezmoi
 fi
+chezmoi=/opt/homebrew/bin/chezmoi
 
 # POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
 # script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"

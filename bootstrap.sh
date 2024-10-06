@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e # exit on error
+# set -e # exit on error
 
 sudo echo
 
@@ -76,16 +76,9 @@ if [ ! -d "${$HOME}/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
 fi
 
 if [ ! "$(command -v chezmoi)" ]; then
-  # chezmoi="$BIN_DIR/chezmoi"
-    # sh -c "$(curl -fsSL https://git.io/chezmoi)" -- -b "$BIN_DIR"
   brew install chezmoi
 fi
 chezmoi=/opt/homebrew/bin/chezmoi
-
-# POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
-# script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
-# exec: replace current process with chezmoi init
-# exec "$chezmoi" init --apply "--source=$script_dir"
 chezmoi init --apply ${GITHUB_USERNAME}
 
 brew bundle install --file=~/Brewfile-${USE_ENV}

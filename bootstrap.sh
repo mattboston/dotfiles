@@ -51,7 +51,7 @@ if [ ! "$(command -v brew)" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-if [ ! "$(command -v omx)" ]; then
+if [ ! "$(command -v omz)" ]; then
   echo "Installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
@@ -69,6 +69,11 @@ fi
 echo "Setting git config"
 git config --global user.email "${GITHUB_EMAIL}"
 git config --global user.name "${GITHUB_NAME}"
+
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
+  echo "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k does not exist. Cloning repo..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
 
 if [ ! "$(command -v chezmoi)" ]; then
   # chezmoi="$BIN_DIR/chezmoi"

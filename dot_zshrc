@@ -121,7 +121,7 @@ autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 [[ -f /opt/homebrew/bin/terraform ]] && complete -o nospace -C /opt/homebrew/bin/terraform terraform
 # source ~/powerlevel10k/powerlevel10k.zsh-theme
-source ${ZSH_CUSTOM}/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+source ${ZSH_CUSTOM}/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 
 # Created by `pipx` on 2024-08-14 14:03:23

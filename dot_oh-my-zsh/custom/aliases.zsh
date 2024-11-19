@@ -7,7 +7,10 @@ alias tf="terraform"
 alias a="ansible"
 alias ap="ansible-playbook"
 alias cm="chezmoi"
-alias cdd="cd ~/Development"
+#alias cdd="cd ~/Development"
+function cdd() {
+    cd ~/Development/$1
+}
 
 alias wgetp='wget -P ~/Downloads/'
 

@@ -10,3 +10,8 @@ export KUBE_CONFIG
 # For ansible
 OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY
+
+# For ansible
+no_proxy="*"
+export no_proxy
+

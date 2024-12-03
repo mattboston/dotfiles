@@ -7,7 +7,7 @@ alias tf="terraform"
 alias a="ansible"
 alias ap="ansible-playbook"
 alias cm="chezmoi"
-#alias cdd="cd ~/Development"
+alias cddf="cd ~/Development/fsc-platform"
 function cdd() {
     cd ~/Development/$1
 }

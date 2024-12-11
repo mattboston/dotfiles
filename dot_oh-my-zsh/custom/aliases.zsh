@@ -6,6 +6,7 @@ alias h="helm"
 alias tf="terraform"
 alias a="ansible"
 alias ap="ansible-playbook"
+alias c="cursor ."
 alias cm="chezmoi"
 alias cddf="cd ~/Development/fsc-platform"
 function cdd() {
@@ -18,3 +19,4 @@ alias wgetp='wget -P ~/Downloads/'
 alias curl="curl -s -w '\n'"
 
 alias ipconfig="curl ifconfig.co/json"
+

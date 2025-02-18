@@ -1,1 +1,0 @@
-. <(flux completion zsh)

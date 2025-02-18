@@ -108,27 +108,19 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# export STARSHIP_CONFIG=~/.config/starship/starship.toml
-# export STARSHIP_CACHE=~/.starship/cache
-
-# eval "$(starship init zsh)"
-#source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 [[ -f /opt/homebrew/bin/terraform ]] && complete -o nospace -C /opt/homebrew/bin/terraform terraform
-# source ~/powerlevel10k/powerlevel10k.zsh-theme
 source ${ZSH_CUSTOM}/themes/powerlevel10k/powerlevel10k.zsh-theme
-
 
 # Created by `pipx` on 2024-08-14 14:03:23
 export PATH="$PATH:/Users/matt/.local/bin"
 
+export THIS_SHOULD_RUN_FROM_ZSH_RC=1
+
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/matt/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-
-export THIS_SHOULD_RUN_FROM_ZSH_RC=1

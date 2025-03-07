@@ -9,3 +9,7 @@ export PATH=~/go/bin:$PATH
 
 # Rancher Desktop
 export PATH="/Users/matt/.rd/bin:$PATH"
+
+# gcloud
+export PATH="/Users/matt/bin/google-cloud-sdk/bin:$PATH"
+

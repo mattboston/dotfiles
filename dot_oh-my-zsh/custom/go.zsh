@@ -1,2 +1,4 @@
-export PATH="/opt/homebrew/opt/go@1.23/bin:$PATH"
+export GOPATH="/opt/homebrew/opt/go@1.23"
+export GOBIN=$GOPATH/bin
+export PATH="$GOBIN:$PATH"
 export PATH="~/go/bin:$PATH"
